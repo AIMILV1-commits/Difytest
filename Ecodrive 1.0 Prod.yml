@@ -1,0 +1,1223 @@
+app:
+  description: ''
+  icon: 🤖
+  icon_background: '#FFEAD5'
+  mode: advanced-chat
+  name: Ecodrive 1.0 Prod
+  use_icon_as_answer_icon: false
+dependencies:
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/openai:0.0.15@5f610705111ac49d93c4ea5eaac690abaeb3b4a87599c48e5165b549b4c47f10
+- current_identifier: null
+  type: marketplace
+  value:
+    marketplace_plugin_unique_identifier: langgenius/cohere:0.0.8@3dcfb5aa3cf8187b5aa1db48cc3e12326d2211d6e707fbde8031f23cc9eb6315
+kind: app
+version: 0.3.1
+workflow:
+  conversation_variables:
+  - description: ''
+    id: 0c72ae36-b433-48e1-9954-d43884e1fdd6
+    name: hasIntroduced
+    selector:
+    - conversation
+    - hasIntroduced
+    value: 0
+    value_type: integer
+  - description: ''
+    id: 6458ebb0-c411-48bf-bf3d-dd234449856b
+    name: name
+    selector:
+    - conversation
+    - name
+    value: ''
+    value_type: string
+  - description: ''
+    id: 99d5965c-60d6-4a96-a149-4c097c1c6d54
+    name: user_id
+    selector:
+    - conversation
+    - user_id
+    value: 0
+    value_type: integer
+  environment_variables:
+  - description: ''
+    id: e05393e0-9b9d-40b2-8659-9d334c28bc7e
+    name: apiKey
+    selector:
+    - env
+    - apiKey
+    value: NjI3NjRkZjk5YjA4YjQxNTA5ZmY1ZjNiZTM5ZTIzNjI6NWRlMmI1MTc1MzRhMmFiMTFhZDM0ZjNmNDM1YTZhZmRjZDdkYTczNjlmZGUyOWY0ZWQxOTIzNzVkNjhlMzk2Yg==
+    value_type: string
+  - description: ''
+    id: d345547e-df4a-47ad-a315-c61ab51d0814
+    name: baseUrl
+    selector:
+    - env
+    - baseUrl
+    value: https://rag-api.rpaclick.com
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions:
+      - .JPG
+      - .JPEG
+      - .PNG
+      - .GIF
+      - .WEBP
+      - .SVG
+      allowed_file_types:
+      - image
+      allowed_file_upload_methods:
+      - local_file
+      - remote_url
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 50
+        batch_count_limit: 5
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods:
+        - local_file
+        - remote_url
+      number_limits: 3
+    opening_statement: ''
+    retriever_resource:
+      enabled: true
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions: []
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: 1750517547992-source-1750525259089-target
+      selected: false
+      source: '1750517547992'
+      sourceHandle: source
+      target: '1750525259089'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: code
+      id: 1750525259089-source-1750525321674-target
+      selected: false
+      source: '1750525259089'
+      sourceHandle: source
+      target: '1750525321674'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: assigner
+      id: 1750525321674-source-1750525477570-target
+      selected: false
+      source: '1750525321674'
+      sourceHandle: source
+      target: '1750525477570'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: assigner
+        targetType: llm
+      id: 1750525477570-source-1754741386757-target
+      source: '1750525477570'
+      sourceHandle: source
+      target: '1754741386757'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: code
+      id: 1754741386757-source-1754748938839-target
+      source: '1754741386757'
+      sourceHandle: source
+      target: '1754748938839'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: code
+        targetType: if-else
+      id: 1754748938839-source-1754749177580-target
+      source: '1754748938839'
+      sourceHandle: source
+      target: '1754749177580'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1754749177580-true-1754749252976-target
+      source: '1754749177580'
+      sourceHandle: 'true'
+      target: '1754749252976'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1754749252976-source-1754749691085-target
+      source: '1754749252976'
+      sourceHandle: source
+      target: '1754749691085'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: knowledge-retrieval
+        targetType: llm
+      id: 1754751657460-source-1754751769347-target
+      source: '1754751657460'
+      sourceHandle: source
+      target: '1754751769347'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1754751769347-source-1754751809443-target
+      source: '1754751769347'
+      sourceHandle: source
+      target: '1754751809443'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1754749177580-46e95d76-f577-4845-9704-6551e995617d-1754753669256-target
+      source: '1754749177580'
+      sourceHandle: 46e95d76-f577-4845-9704-6551e995617d
+      target: '1754753669256'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1754749177580-801db839-1a0d-46fd-a781-8dd7652ba2ef-1754753669256-target
+      source: '1754749177580'
+      sourceHandle: 801db839-1a0d-46fd-a781-8dd7652ba2ef
+      target: '1754753669256'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1754753669256-source-1754753837403-target
+      source: '1754753669256'
+      sourceHandle: source
+      target: '1754753837403'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInLoop: false
+        sourceType: answer
+        targetType: http-request
+      id: 1754753837403-source-17547539143250-target
+      source: '1754753837403'
+      sourceHandle: source
+      target: '17547539143250'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1754749177580-c5c9c778-5864-4324-8638-b81466b7819e-1754926032763-target
+      source: '1754749177580'
+      sourceHandle: c5c9c778-5864-4324-8638-b81466b7819e
+      target: '1754926032763'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1754926032763-source-1754926123891-target
+      source: '1754926032763'
+      sourceHandle: source
+      target: '1754926123891'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1754749177580-false-1754926147515-target
+      source: '1754749177580'
+      sourceHandle: 'false'
+      target: '1754926147515'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: answer
+      id: 1754926147515-source-1754926239085-target
+      source: '1754926147515'
+      sourceHandle: source
+      target: '1754926239085'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: if-else
+        targetType: llm
+      id: 1754749177580-e3ba695d-15ab-45cc-a506-0ac70e47f8e7-1754942544912-target
+      source: '1754749177580'
+      sourceHandle: e3ba695d-15ab-45cc-a506-0ac70e47f8e7
+      target: '1754942544912'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: llm
+        targetType: knowledge-retrieval
+      id: 1754942544912-source-1754751657460-target
+      source: '1754942544912'
+      sourceHandle: source
+      target: '1754751657460'
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: ''
+        selected: false
+        title: Start
+        type: start
+        variables:
+        - label: phone
+          max_length: 48
+          options: []
+          required: true
+          type: text-input
+          variable: phone
+      height: 90
+      id: '1750517547992'
+      position:
+        x: 30
+        y: 832.5
+      positionAbsolute:
+        x: 30
+        y: 832.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: Authorization:Bearer {{#env.apiKey#}}
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP user/by-phone
+        type: http-request
+        url: '{{#env.baseUrl#}}/api/v1/client/user-client/by-phone/{{#1750517547992.phone#}}'
+        variables: []
+      height: 162
+      id: '1750525259089'
+      position:
+        x: 364
+        y: 832.5
+      positionAbsolute:
+        x: 364
+        y: 832.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "function main({ arg1 }) {\n    try {\n        const {\n           \
+          \ id,\n            phone,\n            name,\n            empresa,\n   \
+          \         cb_intent\n        } = JSON.parse(arg1);\n\n        return {\n\
+          \            id: typeof id === \"number\" ? id : 0,\n            phone:\
+          \ String(phone || \"\"),\n            name: String(name || \"\"),\n    \
+          \        empresa: String(empresa || \"\"),\n            cb_intent: String(cb_intent\
+          \ || \"\")\n        };\n    } catch (e) {\n        return {\n          \
+          \  id: 0,\n            phone: \"\",\n            name: \"\",\n         \
+          \   empresa: \"\",\n            cb_intent: \"\"\n        };\n    }\n}\n"
+        code_language: javascript
+        desc: ''
+        outputs:
+          cb_intent:
+            children: null
+            type: string
+          empresa:
+            children: null
+            type: string
+          id:
+            children: null
+            type: number
+          name:
+            children: null
+            type: string
+          phone:
+            children: null
+            type: string
+        selected: false
+        title: Code user/by-phone
+        type: code
+        variables:
+        - value_selector:
+          - '1750525259089'
+          - body
+          variable: arg1
+      height: 54
+      id: '1750525321674'
+      position:
+        x: 698
+        y: 832.5
+      positionAbsolute:
+        x: 698
+        y: 832.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: ''
+        items:
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1750525321674'
+          - id
+          variable_selector:
+          - conversation
+          - user_id
+          write_mode: over-write
+        - input_type: variable
+          operation: over-write
+          value:
+          - '1750525321674'
+          - name
+          variable_selector:
+          - conversation
+          - name
+          write_mode: over-write
+        selected: false
+        title: Variable Assigner
+        type: assigner
+        version: '2'
+      height: 116
+      id: '1750525477570'
+      position:
+        x: 1032
+        y: 832.5
+      positionAbsolute:
+        x: 1032
+        y: 832.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            response_format: json_object
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo-0125
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: b1db54be-4edf-4c15-8963-8332bd319e5b
+          role: system
+          text: "<task>\nVocê é um assistente de vendas especializado da EcoDrive,\
+            \ responsável por analisar e classificar a intenção do cliente com base\
+            \ na query atual e no histórico de conversa.\n</task>\n\n<context>\nA\
+            \ EcoDrive é uma empresa de mobilidade urbana que vende scooters, skates,\
+            \ patinetes e equipamentos relacionados. Você deve classificar a intenção\
+            \ do cliente para roteamento adequado.\n</context>\n\n<input_instructions>\n\
+            1. Analise cuidadosamente a query do usuário:\n   <query>{{#sys.query#}}</query>\n\
+            \   \n2. Considere também o histórico completo da conversa para contexto.\n\
+            \n3. A query pode estar em qualquer idioma - você deve processá-la corretamente\
+            \ independentemente do idioma.\n</input_requirements>\n\n<classification_rules>\n\
+            Classifique a intenção em APENAS uma das seguintes categorias:\n\n- \"\
+            saudacao\": Saudações iniciais ou cumprimentos sem outro propósito (ex:\
+            \ \"Olá\", \"Bom dia\", \"Tudo bem?\", \"Opa\", \"Blz\")\n- \"informacoes\"\
+            : \n   • Solicitações sobre produtos (scooters, skates, patinetes etc)\n\
+            \   • Perguntas institucionais (localização, horário, preços, pagamento,\
+            \ políticas e devoluções)\n   • Dúvidas sobre especificações técnicas\n\
+            - \"atendimento\":\n   • Solicitação explícita por atendimento humano\n\
+            \   • Demonstração clara de intenção de compra\n   • Perguntas sobre processo\
+            \ de compra/venda\n- \"reclamacao\": Expressões de insatisfação, problemas\
+            \ com produtos ou serviços\n- \"elogio\": Comentários positivos sobre\
+            \ produtos, serviços ou atendimento\n- \"outros\": Quando não se enquadrar\
+            \ em nenhuma das categorias acima\n</classification_rules>\n\n<output_requirements>\n\
+            - Responda APENAS com um objeto JSON válido no formato exato:\n{\n\"intent\"\
+            : \"intencao_classificada\"\n}\n- NÃO inclua qualquer texto adicional,\
+            \ explicações ou formatação fora do JSON\n- Garanta que o valor de \"\
+            intent\" esteja EXATAMENTE como uma das opções definidas\n</output_requirements>\n\
+            \n<examples>\nExemplo 1 para \"saudacao\":\nInput: \"Boa tarde!\"\nOutput:\
+            \ {\"intent\": \"saudacao\"}\n\nExemplo 2 para \"informacoes\":\nInput:\
+            \ \"Quanto custa o patinete elétrico X2?\"\nOutput: {\"intent\": \"informacoes\"\
+            }\n\nExemplo 3 para \"atendimento\":\nInput: \"Quero comprar uma scooter,\
+            \ podem me ajudar?\"\nOutput: {\"intent\": \"atendimento\"}\n</examples>\n\
+            \n<importante>\n* A intent deve ser exatamente conforme as \"classification_rules\"\
+            , ou seja, sempre em portugues.\n* NUNCA traduza a intent\n</importante>"
+        selected: false
+        structured_output_enabled: false
+        title: LLM classifier
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1754741386757'
+      position:
+        x: 1366
+        y: 832.5
+      positionAbsolute:
+        x: 1366
+        y: 832.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        code: "function main({ arg1 }) {\n    let parsed;\n    try {\n        parsed\
+          \ = JSON.parse(arg1);\n    } catch {\n        parsed = {};\n    }\n\n  \
+          \  return {\n        intent: parsed.intent || \"\"\n    };\n}\n"
+        code_language: javascript
+        desc: ''
+        outputs:
+          intent:
+            children: null
+            type: string
+        selected: false
+        title: Code
+        type: code
+        variables:
+        - value_selector:
+          - '1754741386757'
+          - text
+          value_type: string
+          variable: arg1
+      height: 54
+      id: '1754748938839'
+      position:
+        x: 1700
+        y: 832.5
+      positionAbsolute:
+        x: 1700
+        y: 832.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        cases:
+        - case_id: 'true'
+          conditions:
+          - comparison_operator: is
+            id: dfc20993-f13a-48a1-b4b7-baa7e8a2b80b
+            value: saudacao
+            varType: string
+            variable_selector:
+            - '1754748938839'
+            - intent
+          id: 'true'
+          logical_operator: and
+        - case_id: e3ba695d-15ab-45cc-a506-0ac70e47f8e7
+          conditions:
+          - comparison_operator: is
+            id: 6564fa3e-a164-4161-a783-93ed1aa7e558
+            value: informacoes
+            varType: string
+            variable_selector:
+            - '1754748938839'
+            - intent
+          id: e3ba695d-15ab-45cc-a506-0ac70e47f8e7
+          logical_operator: and
+        - case_id: 46e95d76-f577-4845-9704-6551e995617d
+          conditions:
+          - comparison_operator: is
+            id: b1fb6920-a97a-41ca-bb4f-709922dccd13
+            value: atendimento
+            varType: string
+            variable_selector:
+            - '1754748938839'
+            - intent
+          id: 46e95d76-f577-4845-9704-6551e995617d
+          logical_operator: and
+        - case_id: 801db839-1a0d-46fd-a781-8dd7652ba2ef
+          conditions:
+          - comparison_operator: is
+            id: 096da041-376a-40c0-a6bb-edaac2e52c68
+            value: reclamacao
+            varType: string
+            variable_selector:
+            - '1754748938839'
+            - intent
+          id: 801db839-1a0d-46fd-a781-8dd7652ba2ef
+          logical_operator: and
+        - case_id: c5c9c778-5864-4324-8638-b81466b7819e
+          conditions:
+          - comparison_operator: is
+            id: 190c116f-9bda-49dd-8d55-ff88690bdb63
+            value: elogio
+            varType: string
+            variable_selector:
+            - '1754748938839'
+            - intent
+          id: c5c9c778-5864-4324-8638-b81466b7819e
+          logical_operator: and
+        desc: ''
+        selected: false
+        title: IF/ELSE
+        type: if-else
+      height: 318
+      id: '1754749177580'
+      position:
+        x: 2034
+        y: 832.5
+      positionAbsolute:
+        x: 2034
+        y: 832.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: ffaa7810-1c40-40b3-8420-1d1c0eaf22b5
+          role: system
+          text: "<role>\nVocê é o Rodrigo, assistente da EcoDrive, especializado em\
+            \ scooters elétricas. Seu propósito é proporcionar um atendimento excepcional\
+            \ via WhatsApp, combinando eficiência com simpatia.\n</role>\n\n<communication_style>\n\
+            - Linguagem: Informal e coloquial, adaptada ao WhatsApp\n- Tom: Amigável\
+            \ e acolhedor\n- Recursos: Pode usar emojis moderadamente (1-2 por resposta)\
+            \ para humanizar a interação\n- Personalidade: \n   • Prestativo e solícito\n\
+            \   • Alegre sem ser exagerado\n   • Profissional mantendo a casualidade\
+            \ do canal\n</communication_style>\n\n<task>\nResponder à saudação inicial\
+            \ do cliente de maneira:\n1. Retribuindo o cumprimento\n2. Verifique no\
+            \ histórico se você já se apresentou:\n- se não então se apresente como\
+            \ Rodrigo, assistente da Ecodrive\n3. Estabelecendo um tom positivo\n\
+            4. Indicando disponibilidade para ajudar\n5. Em no máximo 2 linhas (adequado\
+            \ ao WhatsApp)\n</task>\n\n<presentation_policy>\n1. Verifique no histórico\
+            \ de conversa a última mensagem com role=\"assistant\"\n2. Se não encontrar\
+            \ nenhuma mensagem sua anterior:\n   • Inclua breve apresentação pessoal\n\
+            \   • Apresente a EcoDrive de forma sucinta\n</presentation_policy>\n\n\
+            <customer_greeting>\n{{#sys.query#}}\n</customer_greeting>\n\n<language_policy>\n\
+            1. DEVE analisar e detectar o idioma da saudação do cliente\n2. Responder\
+            \ NO MESMO IDIOMA identificado\n3. Se não conseguir identificar o idioma:\n\
+            \   • Priorize espanhol chileno (uso de \"po\" ao final de frases, vocabulário\
+            \ local)\n</language_policy>\n\n<examples>\n* Importante! Adaptar os exemplos\
+            \ para a linguagem de retorno!\n- Oi, tudo bem? Eu sou o Rodrigo da EcoDrive\
+            \ e tô aqui pra te ajudar—me diz como posso ajudar você hoje! \U0001F60A\
+            \n- Oi, que bom te ver de novo! Se precisar de algo, é só chamar que tô\
+            \ aqui pra ajudar \U0001F60A\n</examples>\n\n<nao_fazer>\n- não forneça\
+            \ e nem responda com informações que não estejam neste prompt\n</nao_fazer>\n"
+        selected: false
+        title: LLM saudacao
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1754749252976'
+      position:
+        x: 2459
+        y: 252.5
+      positionAbsolute:
+        x: 2459
+        y: 252.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1754749252976.text#}}'
+        desc: ''
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 105
+      id: '1754749691085'
+      position:
+        x: 2793
+        y: 252.5
+      positionAbsolute:
+        x: 2793
+        y: 252.5
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        dataset_ids:
+        - Tq8Jp4RpkbgDrK98pz9NEc5CH8IhsE9PfikNQ1ETI5gj+p2Q+65q4REERHNHyJRA
+        - TjJAeDHZMphWGal61GZzSt6xvpiuyfOcp8PPonj2Dsxx3euWhYimiD2pnYIOOPTA
+        - jDJyD+kVRZbRiAzvsBlcEuW7K4rE38W55IXkia0U8ZLHT1FOBw8UvPuecsC859WO
+        desc: ''
+        multiple_retrieval_config:
+          reranking_enable: true
+          reranking_mode: reranking_model
+          reranking_model:
+            model: rerank-english-v3.0
+            provider: langgenius/cohere/cohere
+          score_threshold: null
+          top_k: 5
+        query_variable_selector:
+        - '1754942544912'
+        - text
+        retrieval_mode: multiple
+        selected: true
+        title: Knowledge Retrieval
+        type: knowledge-retrieval
+      height: 92
+      id: '1754751657460'
+      position:
+        x: 3093
+        y: 397.5
+      positionAbsolute:
+        x: 3093
+        y: 397.5
+      selected: true
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: true
+          variable_selector:
+          - '1754751657460'
+          - result
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params: {}
+          mode: chat
+          name: o3-mini
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 362e9b2a-c101-495e-89f6-6ba8e1974c95
+          role: system
+          text: "<persona>\nVocê é o Rodrigo, assistente da EcoDrive, uma empresa\
+            \ especializada na venda de scooters elétricas. Sua missão é atender os\
+            \ clientes de forma simpática, útil e organizada, criando uma experiência\
+            \ agradável e eficiente no atendimento via WhatsApp.\n\n  Seu estilo de\
+            \ comunicação deve ser:\n  - Informal, simpático e acessível.\n  - Adaptado\
+            \ ao canal (WhatsApp), com uso opcional de emojis para tornar a resposta\
+            \ mais amigável.\n  - Claro e organizado, destacando informações com *itálico*\
+            \ e **negrito** quando necessário.\n</persona>\n\n<objetivo>\n  Gerar\
+            \ a melhor resposta possível com base na pergunta do cliente (query) e\
+            \ nas informações adicionais disponíveis (contexto). A resposta será enviada\
+            \ via WhatsApp, e por isso deve ser clara, bem formatada e adaptada ao\
+            \ canal.\n</objetivo>\n\n<entrada>\n  Você receberá os seguintes dados:\n\
+            \n  [query]\n  {{#sys.query#}}\n  [/query]\n\n  [context]\n  {{#context#}}\n\
+            \  [/context]\n</entrada>\n\n<instrucoes_de_formato>\n  1. A resposta\
+            \ será enviada via WhatsApp, portanto:\n     - Utilize bullets (`•`) para\
+            \ organizar listas de forma clara e fácil de ler.\n     - Use emojis apenas\
+            \ se forem úteis para o tom da conversa ou para facilitar a leitura.\n\
+            \     - Destaque informações importantes usando **negrito** ou *itálico*\
+            \ — evite símbolos de Markdown como `*` ou `#`.\n     - Se for necessário\
+            \ enviar links:\n       • Links de imagens devem ser destacados separadamente,\
+            \ com breve explicação.\n       • Links comuns devem ser posicionados\
+            \ de forma natural no texto e com contexto claro.\n     - Evite formatações\
+            \ HTML ou códigos técnicos.\n\n  2. Adapte o nível de detalhamento de\
+            \ acordo com o contexto recebido. Se houver muitas informações relevantes\
+            \ no contexto, organize-as bem para não sobrecarregar o cliente.\n- Priorize\
+            \ envio de imagens quando estiverem no contexto\n- Priorize envio de links\
+            \ quando estiverem no contexto\n\n  3. Seja direto, útil e acolhedor.\
+            \ Evite respostas genéricas.\n\n  4. Quando receber links no contexto\
+            \ mantenha-os de forma organizada\n</instrucoes_de_formato>\n\n<instrucoes_de_idioma>\n\
+            \  - Detecte automaticamente o idioma da mensagem recebida.\n  - Responda\
+            \ no mesmo idioma detectado.\n  - Se não for possível detectar o idioma,\
+            \ responda em espanhol chileno.\n</instrucoes_de_idioma>\n\n<saida_esperada>\n\
+            \  Gere **apenas a resposta final a ser enviada ao cliente**, seguindo\
+            \ todas as instruções acima.\n</saida_esperada>\n\n<nao_fazer>\n* Não\
+            \ diga que não pode enviar imagens diretamente\n</nao_fazer>\n<nao_fazer>\n\
+            - não forneça e nem responda com informações que não estejam neste prompt\n\
+            </nao_fazer>\n<nao_fazer>\n- não mude a notação monetária, use a moeda\
+            \ que receber em contexto\n</nao_fazer>\n"
+        selected: false
+        title: LLM RAG
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1754751769347'
+      position:
+        x: 3427
+        y: 391
+      positionAbsolute:
+        x: 3427
+        y: 391
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1754751769347.text#}}'
+        desc: ''
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 105
+      id: '1754751809443'
+      position:
+        x: 3761
+        y: 391
+      positionAbsolute:
+        x: 3761
+        y: 391
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: dfa626ee-2c84-4220-8691-9c8efc4a1133
+          role: system
+          text: "<role>\nVocê é o Rodrigo, assistente da EcoDrive,  especializado\
+            \ em scooters elétricas. Seu propósito é proporcionar um atendimento excepcional\
+            \ via WhatsApp, combinando eficiência com simpatia.\n</role>\n\n<communication_style>\n\
+            - Linguagem: Informal e coloquial, adaptada ao WhatsApp\n- Tom: Amigável\
+            \ e acolhedor\n- Recursos: Pode usar emojis moderadamente (1-2 por resposta)\
+            \ para humanizar a interação\n- Personalidade: \n   • Prestativo e solícito\n\
+            \   • Alegre sem ser exagerado\n   • Profissional mantendo a casualidade\
+            \ do canal\n</communication_style>\n\n<task>\n- Informe o cliente que\
+            \ está encaminhando o atendimento para um atendente humano\n- sempre forneça\
+            \ o telefone +56 9 5008 0442 para falar com o atendente. (formate o telefone\
+            \ para o estilo whatsapp)\n</task>\n\n<customer_input>\n{{#sys.query#}}\n\
+            </customer_input>\n\n<language_policy>\n1. DEVE analisar e detectar o\
+            \ idioma do input do cliente\n2. Responder NO MESMO IDIOMA identificado\n\
+            3. Se não conseguir identificar o idioma:\n   • Priorize espanhol chileno\
+            \ (uso de \"po\" ao final de frases, vocabulário local)\n</language_policy>\n\
+            \n\n\n\n"
+        selected: false
+        title: LLM atendimento´
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1754753669256'
+      position:
+        x: 3127
+        y: 536
+      positionAbsolute:
+        x: 3127
+        y: 536
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1754753669256.text#}}'
+        desc: ''
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 105
+      id: '1754753837403'
+      position:
+        x: 3461
+        y: 536
+      positionAbsolute:
+        x: 3461
+        y: 536
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data: []
+          type: none
+        desc: ''
+        headers: Authorization:Bearer {{#env.apiKey#}}
+        method: post
+        params: ''
+        retry_config:
+          max_retries: 3
+          retry_enabled: true
+          retry_interval: 100
+        selected: false
+        ssl_verify: true
+        timeout:
+          max_connect_timeout: 0
+          max_read_timeout: 0
+          max_write_timeout: 0
+        title: HTTP user/by-dify-conversation-id
+        type: http-request
+        url: '{{#env.baseUrl#}}/api/v1/client/user-client/by-dify-conversation-id/{{#sys.conversation_id#}}/chatwoot-label'
+        variables: []
+      height: 178
+      id: '17547539143250'
+      position:
+        x: 3795
+        y: 536
+      positionAbsolute:
+        x: 3795
+        y: 536
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 3b3b3a5c-6171-42c7-bf4d-d72c4bace908
+          role: system
+          text: "<role>\nVocê é o Rodrigo, assistente da EcoDrive,  especializado\
+            \ em scooters elétricas. Seu propósito é proporcionar um atendimento excepcional\
+            \ via WhatsApp, combinando eficiência com simpatia.\n</role>\n\n<communication_style>\n\
+            - Linguagem: Informal e coloquial, adaptada ao WhatsApp\n- Tom: Amigável\
+            \ e acolhedor\n- Recursos: Pode usar emojis moderadamente (1-2 por resposta)\
+            \ para humanizar a interação\n- Personalidade: \n   • Prestativo e solícito\n\
+            \   • Alegre sem ser exagerado\n   • Profissional mantendo a casualidade\
+            \ do canal\n</communication_style>\n\n<task>\nVocê acabou de receber um\
+            \ elogio, retribua conforme as instruções e responda conforme as regras\
+            \ de idioma.\n</task>\n\n<customer_input>\n{{#sys.query#}}\n</customer_input>\n\
+            \n<language_policy>\n1. DEVE analisar e detectar o idioma do input do\
+            \ cliente\n2. Responder NO MESMO IDIOMA identificado\n3. Se não conseguir\
+            \ identificar o idioma:\n   • Priorize espanhol chileno (uso de \"po\"\
+            \ ao final de frases, vocabulário local)\n</language_policy>\n\n\n"
+        selected: false
+        title: LLM Elogio
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1754926032763'
+      position:
+        x: 3461
+        y: 725
+      positionAbsolute:
+        x: 3461
+        y: 725
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1754926032763.text#}}'
+        desc: ''
+        selected: false
+        title: Answer
+        type: answer
+        variables: []
+      height: 105
+      id: '1754926123891'
+      position:
+        x: 3795
+        y: 754
+      positionAbsolute:
+        x: 3795
+        y: 754
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        memory:
+          query_prompt_template: '{{#sys.query#}}
+
+
+            {{#sys.files#}}'
+          role_prefix:
+            assistant: ''
+            user: ''
+          window:
+            enabled: false
+            size: 50
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 4aee7e2d-ff09-4638-8f2e-0ed75d3ff37a
+          role: system
+          text: "<role>\nVocê é o Rodrigo, assistente da EcoDrive,  especializado\
+            \ em scooters elétricas. Seu propósito é proporcionar um atendimento excepcional\
+            \ via WhatsApp, combinando eficiência com simpatia.\n</role>\n\n<communication_style>\n\
+            - Linguagem: Informal e coloquial, adaptada ao WhatsApp\n- Tom: Amigável\
+            \ e acolhedor\n- Recursos: Pode usar emojis moderadamente (1-2 por resposta)\
+            \ para humanizar a interação\n- Personalidade: \n   • Prestativo e solícito\n\
+            \   • Alegre sem ser exagerado\n   • Profissional mantendo a casualidade\
+            \ do canal\n</communication_style>\n\n<task>\nO usuário acabou de fazer\
+            \ uma pergunta que não faz parte do seu escopo de atendimento, informe\
+            \ ele educadamente e pergunte se ele quer que direcione para o atendimento\
+            \ humanizado.\n</task>\n\n<customer_input>\n{{#sys.query#}}\n</customer_input>\n\
+            \n<language_policy>\n1. DEVE analisar e detectar o idioma do input do\
+            \ cliente\n2. Responder NO MESMO IDIOMA identificado\n3. Se não conseguir\
+            \ identificar o idioma:\n   • Priorize espanhol chileno (uso de \"po\"\
+            \ ao final de frases, vocabulário local)\n</language_policy>\n\n\n"
+        selected: false
+        title: LLM Outros
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1754926147515'
+      position:
+        x: 3795
+        y: 977
+      positionAbsolute:
+        x: 3795
+        y: 977
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        answer: '{{#1754926147515.text#}}'
+        desc: ''
+        selected: false
+        title: Answer 5
+        type: answer
+        variables: []
+      height: 105
+      id: '1754926239085'
+      position:
+        x: 4129
+        y: 933
+      positionAbsolute:
+        x: 4129
+        y: 933
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        context:
+          enabled: false
+          variable_selector: []
+        desc: ''
+        model:
+          completion_params:
+            temperature: 0.7
+          mode: chat
+          name: gpt-3.5-turbo
+          provider: langgenius/openai/openai
+        prompt_template:
+        - id: 49e18ad7-d74b-404e-a017-2da50213c9fb
+          role: system
+          text: 'Você é um assistente especializado em melhorar perguntas para o RAG
+            para isso você deve:
+
+
+            1. considerar o input abaixo do usuário
+
+            2. considerar o histórico de conversas
+
+            3. refletir sobre o input e o histórico e compreender apenas os aspectos
+            relevantes
+
+            4. tornar a pergunta objetiva e clara
+
+            5. traduzir a pergunta para o espanhol
+
+
+            <input>{{#sys.query#}}<i/nput>'
+        selected: false
+        title: LLM ASK KB
+        type: llm
+        variables: []
+        vision:
+          enabled: false
+      height: 90
+      id: '1754942544912'
+      position:
+        x: 2793
+        y: 397.5
+      positionAbsolute:
+        x: 2793
+        y: 397.5
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: -1437.0809260244791
+      y: 7.507358541823578
+      zoom: 0.6783021637238399
