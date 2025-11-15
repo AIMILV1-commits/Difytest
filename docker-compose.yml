@@ -1,0 +1,76 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ecodrive-api
+    ports:
+      - "8000:8000"
+    environment:
+      # API Configuration
+      - API_TITLE=${API_TITLE:-EcoDrive Query API}
+      - API_VERSION=${API_VERSION:-1.0.0}
+
+      # External API
+      - RAG_API_BASE_URL=${RAG_API_BASE_URL}
+      - RAG_API_KEY=${RAG_API_KEY}
+
+      # OpenAI Configuration
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - OPENAI_MODEL_CLASSIFIER=${OPENAI_MODEL_CLASSIFIER:-gpt-3.5-turbo-0125}
+      - OPENAI_MODEL_CHAT=${OPENAI_MODEL_CHAT:-gpt-3.5-turbo}
+      - OPENAI_MODEL_RAG=${OPENAI_MODEL_RAG:-o3-mini}
+      - OPENAI_TEMPERATURE=${OPENAI_TEMPERATURE:-0.7}
+
+      # Cohere Configuration
+      - COHERE_API_KEY=${COHERE_API_KEY}
+      - COHERE_RERANK_MODEL=${COHERE_RERANK_MODEL:-rerank-english-v3.0}
+
+      # Knowledge Base
+      - DATASET_IDS=${DATASET_IDS}
+
+      # Server Configuration
+      - HOST=${HOST:-0.0.0.0}
+      - PORT=${PORT:-8000}
+
+      # Redis (if using)
+      - REDIS_URL=${REDIS_URL}
+
+      # HTTP Configuration
+      - HTTP_MAX_RETRIES=${HTTP_MAX_RETRIES:-3}
+      - HTTP_RETRY_INTERVAL=${HTTP_RETRY_INTERVAL:-100}
+      - HTTP_CONNECT_TIMEOUT=${HTTP_CONNECT_TIMEOUT:-30}
+      - HTTP_READ_TIMEOUT=${HTTP_READ_TIMEOUT:-60}
+    volumes:
+      - ./app:/app/app
+    restart: unless-stopped
+    networks:
+      - ecodrive-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 5s
+
+  # Optional: Redis for conversation storage (uncomment if needed)
+  # redis:
+  #   image: redis:7-alpine
+  #   container_name: ecodrive-redis
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - redis-data:/data
+  #   restart: unless-stopped
+  #   networks:
+  #     - ecodrive-network
+  #   command: redis-server --appendonly yes
+
+networks:
+  ecodrive-network:
+    driver: bridge
+
+# volumes:
+#   redis-data:
